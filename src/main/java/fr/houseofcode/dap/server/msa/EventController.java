@@ -17,9 +17,12 @@ import fr.houseofcode.dap.server.msa.google.CalendarService;
 @RestController
 public class EventController {
     @Autowired
+    //TODO MSA by Djer |Audit Code| (Checkstyle) Commentaire JavaDoc manquant
     private CalendarService service;
 
+    //TODO MSA by Djer |MVC| "/Calendar" (ou "/Event") serait mieux. Il faut éviter de préciser ce genre de détails "interne" à l'appelant.
     @RequestMapping("/CalendarService/Event")
+    //TODO MSA by Djer |Audit Code| (Checkstyle) Commentaire JavaDoc manquant
     public String displaynextEvent(@RequestParam String userKey) throws IOException, GeneralSecurityException {
         return service.nextEvent(userKey);
     }

@@ -23,8 +23,10 @@ import com.google.api.services.calendar.model.Events;
  */
 @Service
 public class CalendarService {
+    //TODO MSA by Djer |Audit Code| (Checkstyle) Commentaire JavaDoc manquant
     private static final Logger LOG = LogManager.getLogger();
 
+    //TODO MSA by Djer |Command Line| La méthode "main" n'est utile que comme point d'entré du programme, elle n'est pas (plus) utile dans cette classe.
     public static void main(final String[] args) throws IOException, GeneralSecurityException {
         LOG.debug("Début du main avec comme arguments : " + args);
 
@@ -35,9 +37,11 @@ public class CalendarService {
     /** * The default JsonFactory. */
     private static final JsonFactory JSON_FACTORY = JacksonFactory.getDefaultInstance();
     /** Singleton. */
+    //TODO MSA by Djer |Design Patern| Nous n'avons plus besoin de gérer le Singleton SpringFramework le fait pour nous.
     private static CalendarService instance;
 
     /* Is an empty private constructor (cf.Singleton pattern). */
+    //TODO MSA by Djer |Design Patern| Ce constructeur "privé" n'est plus utile, c'est SpringFramework qui gère le Singleton pour nous maintenant.
     private CalendarService() {
 
     }
@@ -46,6 +50,7 @@ public class CalendarService {
      *  Description Singleton.
      * @return
      */
+    //TODO MSA by Djer |Design Patern| Nous n'avons plus besoin de gérer le Singleton SpringFramework le fait pour nous.
     public static CalendarService getInstance() {
         if (instance == null) {
             instance = new CalendarService();
@@ -59,6 +64,7 @@ public class CalendarService {
      * @throws IOException if the sent or received  message's broken
      * @throws GeneralSecurityException in case there's a security failure  
      */
+    //TODO MSA by Djer |Audit Code| (Checkstyle) le paramètre "userKey" devrait être final. En effet le corps de cette méthode ne va pas modifié (le pointeur) de ce paramètre. C'est une bonne habitude de ne PAS modifié le pointeur d'un paramètre. La quais totalité des paramètres sont donc "final"
     public String nextEvent(String userKey) throws IOException, GeneralSecurityException {
 
         LOG.info("Start of the get next event method");

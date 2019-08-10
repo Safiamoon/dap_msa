@@ -30,7 +30,9 @@ import com.google.api.client.http.javanet.NetHttpTransport;
  */
 @Controller
 public class GoogleAccount {
+    //TODO MSA by Djer |Audit Code| (Checkstyle) Commentaire JavaDoc Manquant
     private static final int SENSIBLE_DATA_FIRST_CHAR = 0;
+    //TODO MSA by Djer |Audit Code| (Checkstyle) Commentaire JavaDoc Manquant
     private static final int SENSIBLE_DATA_LAST_CHAR = 5;
 
     /**
@@ -40,11 +42,12 @@ public class GoogleAccount {
      * @param session the HTTP Session
      * @return the view to display
      * @throws ServletException When Google account could not be connected to DaP.
-     * @throws GeneralSecurityException 
+     * @throws GeneralSecurityException  //TODO MSA by Djer |Audit Code| (Checkstyle) Commentaire JavaDoc Manquant pour "GeneralSecurityException"
      */
     @RequestMapping("/oAuth2Callback")
     public String oAuthCallback(@RequestParam final String code, final HttpServletRequest request,
             final HttpSession session) throws ServletException, GeneralSecurityException {
+        //TODO MSA by Djer |Log4J| Ne récupère pas un "Logger" dans chaque méthode. Un Logger n'a en général besoin d'être configuré qu'une fois par classe. Ici à chaque appel de la méthode, tu demandes à Log4J de te configurer un "Logger" et ca n'est pas utile. Le "Logger" devrait être un attribut de la classe.
         final Logger LOG = LogManager.getLogger();
         final String decodedCode = extracCode(request);
 
@@ -70,7 +73,7 @@ public class GoogleAccount {
             // onSuccess(request, resp, credential);
         } catch (IOException e) {
             LOG.error("Exception while trying to store user Credential", e);
-            throw new ServletException("Error while trying to conenct Google Account");
+            throw new ServletException("Error while trying to connect Google Account");
         }
 
         return "redirect:/";
@@ -85,6 +88,7 @@ public class GoogleAccount {
 
     @SuppressWarnings("PMD.AvoidDuplicateLiterals")
     private String getUserid(final HttpSession session) throws ServletException {
+        //TODO MSA by Djer |Log4J| Logger en attribut et pas en variable local d'une méthode.
         final Logger LOG = LogManager.getLogger();
         String userId = null;
         if (null != session && null != session.getAttribute("userId")) {
@@ -102,15 +106,16 @@ public class GoogleAccount {
     /**
      * Add a Google account (user will be prompt to connect and accept required
      * access).
-     * @param userId  the user to store Data
+     * @param userId  the user to store Data //TODO MSA by Djer |Audit Code| (Checkstyle) balise @Param inutilisé pour "userId". En effet tu as renomé ce paramètre en "userKey" et du coups ta JavaDoc est devenue invalide.
      * @param request the HTTP request
      * @param session the HTTP session
-     * @return 
-     * @throws GeneralSecurityException 
+     * @return //TODO MSA by Djer |Audit Code| (Checkstyle) Il manque la description du "return"
+     * @throws GeneralSecurityException  //TODO MSA by Djer |Audit Code| (Checkstyle) Il manque la description du "GeneralSecurityException"
      */
     @RequestMapping("/account/add/{userId}")
     public String addAccount(@PathVariable("userId") final String userKey, final HttpServletRequest request,
             final HttpSession session) throws GeneralSecurityException {
+        //TODO MSA by Djer |Log4J| Logger en attribut et pas en variable local d'une méthode.
         final Logger LOG = LogManager.getLogger();
         String response = "errorOccurs";
         GoogleAuthorizationCodeFlow flow;
@@ -128,7 +133,6 @@ public class GoogleAccount {
                 authorizationUrl.setRedirectUri(buildRedirectUri(request, "/oAuth2Callback"));
                 // store userId in session for CallBack Access
                 session.setAttribute("userId", userKey);
-                //TODO bam by Djer |API Google| Sauvegarde le "loginName" ici en session pour l'utiliser dans le oAuth2Callback
                 response = "redirect:" + authorizationUrl.build();
             }
         } catch (IOException e) {
@@ -145,6 +149,7 @@ public class GoogleAccount {
      * @throws ServletException if the code cannot be decoded
      */
     private String extracCode(final HttpServletRequest request) throws ServletException {
+        //TODO MSA by Djer |Log4J| Logger en attribut et pas en variable local d'une méthode.
         final Logger LOG = LogManager.getLogger();
         final StringBuffer buf = request.getRequestURL();
         if (null != request.getQueryString()) {

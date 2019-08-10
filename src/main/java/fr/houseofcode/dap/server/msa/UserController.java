@@ -16,9 +16,11 @@ import fr.houseofcode.dap.server.msa.data.AppUserRepository;
 public class UserController {
 
     @Autowired
+    //TODO MSA by Djer |Audit Code| (Checkstyle) Commentaire JavaDoc manquant
     private AppUserRepository appUserRepo;
 
     @RequestMapping("user/all")
+    //TODO MSA by Djer |Audit Code| (Checkstyle) Commentaire JavaDoc manquant
     public Iterable<AppUser> displayAllUsers() {
 
         return appUserRepo.findAll();
@@ -26,6 +28,8 @@ public class UserController {
     }
 
     @RequestMapping("/user/add")
+    //TODO MSA by Djer |Audit Code| (Checkstyle) Commentaire JavaDoc manquant
+    //TODO MSA by Djer |Audit Code| (Checkstyle) LE paramèrte "name" devrait être final
     public void adduser(@RequestParam String name) {
         AppUser entity = new AppUser();
         entity.setName(name);

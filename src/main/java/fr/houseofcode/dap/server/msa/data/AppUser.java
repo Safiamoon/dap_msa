@@ -12,6 +12,7 @@ import javax.persistence.Id;
 public class AppUser {
     @Id
     @GeneratedValue
+    //TODO MSA by Djer |Audit Code| (Checkstyle) Commentaire JavaDoc manquant
     private Integer id;
 
     /**
@@ -24,6 +25,7 @@ public class AppUser {
     /**
      * @param id the id to set
      */
+    //TODO MSA by Djer |Audit Code| (Checkstyle) LE paramètre devrait être final
     public void setId(Integer id) {
         this.id = id;
     }
@@ -38,10 +40,13 @@ public class AppUser {
     /**
      * @param name the name to set
      */
+    //TODO MSA by Djer |Audit Code| (Checkstyle) LE paramètre devrait être final
     public void setName(String name) {
         this.name = name;
     }
 
+    //TODO MSA by Djer |Audit Code| (Checkstyle) Commentaire JavaDoc manquant
+    //TODO MSA by Djer |POO| Place les attributs vers le début de la classe. Ordre attendu : Constantes, attributs, intialisateurs statiques, constructeurs, méthodes métier, méthodes utilitaires (toString, Equals,...), getter/setters
     private String name;
 
 }
