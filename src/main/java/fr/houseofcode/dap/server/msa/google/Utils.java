@@ -27,20 +27,20 @@ import com.google.api.services.gmail.GmailScopes;
 public class Utils {
     /** * The default JsonFactory. */
     private static final JsonFactory JSON_FACTORY = JacksonFactory.getDefaultInstance();
-    /** */
 
+    /** */
     private static final String TOKENS_DIRECTORY_PATH = System.getProperty("user.home") + "\\dap\\tokens";
 
     /**
-    	 * Global instance of the scopes required by this quickstart.
-    	 * If modifying these scopes, delete your previously saved tokens/ folder.
-    	 */
+     * Global instance of the scopes required by this quickstart.
+     * If modifying these scopes, delete your previously saved tokens/ folder.
+     */
     private static final List<String> SCOPES = new ArrayList<String>();
     //  private static final String CREDENTIALS_FILE_PATH = System.getProperty("user.home") + "\\dap\\credentials.json";
 
     /**
      * Creates an authorized Credential object.
-     * @param httpTransport The network HTTP Transport.
+     * @param httpTransport The network HTTP Transport. //TODO MSA by Djer |Audit Code| (Checkstyle) balise @Param inutilisé pour "httpTransport". Elles ne sont pas ecrit pareile, La version CamelCase est la façon la plus correct de l'écrire.
      * @return An authorized Credential object.
      * @throws IOException if the sent or received  message's broken
      */
@@ -55,8 +55,10 @@ public class Utils {
 
     }
 
+    //TODO MSA by Djer |Audit Code| (Checkstyle) Commentaire JavaDoc manquant
     static GoogleAuthorizationCodeFlow getFlow(final NetHttpTransport httpTransport) throws IOException {
 
+        //TODO MSA by Djer |IDE| Supprime les TO-DO créé automatiquement par Eclipse une fois que tu les as traité
         // TODO Auto-generated method stub
         // Build flow and trigger     user authorization request.
         SCOPES.add(CalendarScopes.CALENDAR_READONLY);
@@ -67,6 +69,7 @@ public class Utils {
         //            throw new FileNotFoundException("Resource not found: " + CREDENTIALS_FILE_PATH);
         //        }
 
+        //TODO MSA by Djer |POO| Tu devrais utiliser ta constante "CREDENTIALS_FILE_PATH"
         File clientSecretsFic = new File(System.getProperty("user.home") + "\\dap\\credentials.json");
         Reader read = new InputStreamReader(new FileInputStream(clientSecretsFic), Charset.forName("UTF-8"));
 

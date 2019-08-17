@@ -26,8 +26,10 @@ import com.google.api.services.gmail.model.Message;
 @Service
 public final class GmailService {
 
+    //TODO MSA by Djer |Audit Code| (Checkstyle) Commentaire JavaDoc manquant
     private static final Logger LOG = LogManager.getLogger();
 
+    //TODO MSA by Djer |Command Line| La méthode "main" n'est utile que comme point d'entré du programme, elle n'est pas (plus) utile dans cette classe.
     public static void main(final String[] args) throws IOException, GeneralSecurityException {
         LOG.debug("Début du main avec comme arguments : " + args);
     }
@@ -37,6 +39,7 @@ public final class GmailService {
     /** The default JsonFactory. */
     static final JsonFactory JSON_FACTORY = JacksonFactory.getDefaultInstance();
 
+    //TODO MSA by Djer |Design Patern| Ce constructeur était privé lorsque l'on gérait le "Singleton" nous-même, ca n'est plus utile (Spring fait lui même un Singleton). Tu peux supprimer ce constructeur, celui par defaut généré par Java fonctionenra bien ici.
     /** The default constructor. Private because is a singleton. */
     private GmailService() {
 
@@ -45,9 +48,10 @@ public final class GmailService {
     /**
      * Allow the secured access to Gmail.
      * @return an instance GmailService with secured transport
-     * @throws GeneralSecurityException in case there's a security failure		
+     * @throws GeneralSecurityException in case there's a security failure		 //TODO MSA by Djer |Audit Code| (Checkstyle) Evite les espaces vides en fin de ligne
      * @throws IOException  if the sent or received  message's broken
      */
+    //TODO MSA by Djer |Audit Code| (Checkstyle) le paramètre "userKey" devrait être final. En effet le corps de cette méthode ne va pas modifié (le pointeur) de ce paramètre. C'est une bonne habitude de ne PAS modifié le pointeur d'un paramètre. La quais totalité des paramètres sont donc "final"
     private Gmail getService(String userKey) throws GeneralSecurityException, IOException {
 
         // Build a new authorized API client service.
@@ -59,7 +63,7 @@ public final class GmailService {
     }
 
     /**
-     * Count the number of unread emails
+     * Count the number of unread emails //TODO MSA by Djer |Audit Code| (Checkstyle) La première ligne d'une Javadoc doit finir par un . (point). En effet c'est une phrase (courte) qui décrit l'élément (ici ta méthode) et kes phrases se terminent par un . (point)
      * @return the number of unread emails
      * @throws IOException if the sent or received  message's broken
      * @throws GeneralSecurityException in case there's a security failure
@@ -73,10 +77,11 @@ public final class GmailService {
                 .execute();
         List<Message> messages = allMessages.getMessages();
         if (messages.isEmpty()) {
-
+            //TODO MSA by Djer |Audit Code| (Checkstyle) Le bloc devrait contenir au moins une instruction. Tu peux mettre une LOG de debug/info. Ou alors inverser ta condition dans le "if" et transféré le bloc "else" dans ce block
         } else {
             int number = messages.size();
             LOG.debug("Number of unread messages : " + number);
+            //TODO MSA by Djer |POO| Evite d'avoir plusieurs return dans une méthode. Initialise une varaible au début de la méthode, valorise cette variable en fonction des règles métier puis renvoie la valeur de cette variable.
             return number;
 
         }
@@ -90,15 +95,17 @@ public final class GmailService {
      * @throws IOException if the sent or received  message's broken
      * @throws GeneralSecurityException in case there's a security failure
      */
+    //TODO MSA by Djer |Audit Code| (Checkstyle) La balise javadoc @param est manquante pour "userKey"
     public String getLabels(String userKey) throws IOException, GeneralSecurityException {
         Gmail service2 = getService(userKey);
+        //TODO MSA by Djer |POO| Evite de mettre un espace, il vaut mieu initialiser avec "vide" (sans espaces). Ici ton premier label aura un espace en plus au début
         String result = " ";
         String user = "me";
 
         ListLabelsResponse labelsResponse = service2.users().labels().list(user).execute();
         List<Label> labels = labelsResponse.getLabels();
         if (labels.isEmpty()) {
-
+            //TODO MSA by Djer |POO| Evite d'avoir plusieurs return dans une méthode. Initialise une varaible au début de la méthode, valorise cette variable en fonction des règles métier puis renvoie la valeur de cette variable. En plus ici tu as déja "result" qui est prete pour cela.
             return "No labels found.";
         } else {
 
@@ -136,6 +143,7 @@ public final class GmailService {
                 break;
             }
         }
+        //TODO MSA by Djer |JavaDoc| L'utilisation de "setLabelIds(labelIds)" (ligne 133) permet d'appliquer un "filtre" (uniquement les messages qui ont ce "label"). La valeur de "labelsIds" devrait apparaître dans ton message de log pour mieux contextualiser la liste des messages déja affiché
         LOG.debug("Labels and list emails of Gmail : " + messages);
         return messages;
     }
