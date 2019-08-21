@@ -9,13 +9,16 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 
 @SpringBootApplication
+//TODO MSA by Djer |Audit Code| (Checkstyle) Commentaire JavaDoc manquant
 public class Application {
 
+    //TODO MSA by Djer |Audit Code| (Checkstyle) Commentaire JavaDoc manquant
     public static void main(String[] args) {
         SpringApplication.run(Application.class, args);
     }
 
     @Bean
+    //TODO MSA by Djer |Spring| Cette méthode n'est aps très utile (elel servais dans le tut pour vérifer que tous fonctionne. Elle affiche le contenue du "conteneur IOC de Sptring"). Tu peux la supprimer
     public CommandLineRunner commandLineRunner(ApplicationContext ctx) {
         return args -> {
 

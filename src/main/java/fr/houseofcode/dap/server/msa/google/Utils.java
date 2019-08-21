@@ -22,7 +22,6 @@ import com.google.api.services.gmail.GmailScopes;
 /**
  * Instance of scopes for Gmail and Calendar
  * @author adminHOC created a class and named it Utils
- *
  */
 public class Utils {
     /** * The default JsonFactory. */

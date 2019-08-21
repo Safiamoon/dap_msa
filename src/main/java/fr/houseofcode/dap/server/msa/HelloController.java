@@ -4,10 +4,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
- * @author msa
  *
+ * @author msa
  */
 @RestController
+//TODO MSA by Djer |Audit Code| (Checkstyle) Commentaire JavaDoc manquant
 public class HelloController {
 
     @RequestMapping("/")

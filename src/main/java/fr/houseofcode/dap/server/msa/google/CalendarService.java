@@ -67,6 +67,7 @@ public class CalendarService {
     //TODO MSA by Djer |Audit Code| (Checkstyle) le paramètre "userKey" devrait être final. En effet le corps de cette méthode ne va pas modifié (le pointeur) de ce paramètre. C'est une bonne habitude de ne PAS modifié le pointeur d'un paramètre. La quais totalité des paramètres sont donc "final"
     public String nextEvent(String userKey) throws IOException, GeneralSecurityException {
 
+        //TODO MSA by Djer |Log4J| Contextualise tes messages de log (ajoute "for userKey : " + userKey) 
         LOG.info("Start of the get next event method");
         // Build a new authorized API client service.
         final NetHttpTransport httpTransport = GoogleNetHttpTransport.newTrustedTransport();
@@ -81,6 +82,7 @@ public class CalendarService {
         List<Event> items = events.getItems();
         // return items
         if (items.isEmpty()) {
+            //TODO MSA by Djer |POO| Evite les multiple return dans une même métiode. Ici valorise la valeur de "réponse" avec ta chaine de texte
             return "No upcoming events found.";
         } else {
 
@@ -93,6 +95,7 @@ public class CalendarService {
                 //	System.out.printf("%s (%s)\n", event.getSummary(), start);
             }
         }
+        //TODO MSA by Djer |Log4J| Contextualise tes messages de log (ajoute "for userKey : " + userKey) 
         LOG.debug("The next event is : " + result);
         return result;
     }

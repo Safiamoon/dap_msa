@@ -5,10 +5,11 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 /**
- * @author msa
  *
+ * @author msa
  */
 @Entity
+//TODO MSA by Djer |Audit Code| (Checkstyle) Commentaire JavaDoc manquant
 public class AppUser {
     @Id
     @GeneratedValue

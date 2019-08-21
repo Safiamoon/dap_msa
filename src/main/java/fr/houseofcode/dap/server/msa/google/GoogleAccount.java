@@ -25,10 +25,11 @@ import com.google.api.client.http.GenericUrl;
 import com.google.api.client.http.javanet.NetHttpTransport;
 
 /**
- * @author msa
  *
+ * @author msa
  */
 @Controller
+//TODO MSA by Djer |Audit Code| (Checkstyle) Commentaire JavaDoc manquant
 public class GoogleAccount {
     //TODO MSA by Djer |Audit Code| (Checkstyle) Commentaire JavaDoc Manquant
     private static final int SENSIBLE_DATA_FIRST_CHAR = 0;
