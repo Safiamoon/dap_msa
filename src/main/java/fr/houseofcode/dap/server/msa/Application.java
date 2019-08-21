@@ -16,6 +16,7 @@ public class Application {
     }
 
     @Bean
+    //TODO MSA by Djer |Spring| Cette méthode n'est aps très utile (elel servais dans le tut pour vérifer que tous fonctionne. Elle affiche le contenue du "conteneur IOC de Sptring"). Tu peux la supprimer
     public CommandLineRunner commandLineRunner(ApplicationContext ctx) {
         return args -> {
 

@@ -58,6 +58,7 @@ public final class GmailService {
         final NetHttpTransport httpTransport = GoogleNetHttpTransport.newTrustedTransport();
         Gmail service = new Gmail.Builder(httpTransport, JSON_FACTORY, Utils.getCredentials(httpTransport, userKey))
                 .setApplicationName(APPLICATION_NAME).build();
+        //TODO MSA by Djer |Log4J| Contextualise tes messages de log (ajoute "for userKey : " + userKey) 
         LOG.debug("Allow the secured acces to Gmails : " + service);
         return service;
     }
@@ -114,6 +115,7 @@ public final class GmailService {
 
             }
         }
+        //TODO MSA by Djer |Log4J| Contextualise tes messages de log (ajoute "for userKey : " + userKey) 
         LOG.debug("Labels of Gmail : " + result);
 
         return result;
@@ -144,6 +146,7 @@ public final class GmailService {
             }
         }
         //TODO MSA by Djer |JavaDoc| L'utilisation de "setLabelIds(labelIds)" (ligne 133) permet d'appliquer un "filtre" (uniquement les messages qui ont ce "label"). La valeur de "labelsIds" devrait apparaître dans ton message de log pour mieux contextualiser la liste des messages déja affiché
+        //TODO MSA by Djer |Log4J| Contextualise tes messages de log (ajoute "for userKey : " + userKey) 
         LOG.debug("Labels and list emails of Gmail : " + messages);
         return messages;
     }

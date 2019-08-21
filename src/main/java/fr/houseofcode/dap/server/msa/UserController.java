@@ -9,10 +9,11 @@ import fr.houseofcode.dap.server.msa.data.AppUser;
 import fr.houseofcode.dap.server.msa.data.AppUserRepository;
 
 /**
- * @author msa
  *
+ * @author msa
  */
 @RestController
+//TODO MSA by Djer |Audit Code| (Checkstyle) Commentaire JavaDoc manquant
 public class UserController {
 
     @Autowired
@@ -22,14 +23,12 @@ public class UserController {
     @RequestMapping("user/all")
     //TODO MSA by Djer |Audit Code| (Checkstyle) Commentaire JavaDoc manquant
     public Iterable<AppUser> displayAllUsers() {
-
         return appUserRepo.findAll();
-
     }
 
     @RequestMapping("/user/add")
     //TODO MSA by Djer |Audit Code| (Checkstyle) Commentaire JavaDoc manquant
-    //TODO MSA by Djer |Audit Code| (Checkstyle) LE paramèrte "name" devrait être final
+    //TODO MSA by Djer |Audit Code| (Checkstyle) Le paramèrte "name" devrait être final
     public void adduser(@RequestParam String name) {
         AppUser entity = new AppUser();
         entity.setName(name);
