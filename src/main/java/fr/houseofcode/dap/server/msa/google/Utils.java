@@ -29,13 +29,14 @@ public class Utils {
 
     /** */
     private static final String TOKENS_DIRECTORY_PATH = System.getProperty("user.home") + "\\dap\\tokens";
+  
 
     /**
      * Global instance of the scopes required by this quickstart.
      * If modifying these scopes, delete your previously saved tokens/ folder.
      */
     private static final List<String> SCOPES = new ArrayList<String>();
-    //  private static final String CREDENTIALS_FILE_PATH = System.getProperty("user.home") + "\\dap\\credentials.json";
+    private static final String CREDENTIALS_FILE_PATH = System.getProperty("user.home") + "\\dap\\credentials.json";
 
     /**
      * Creates an authorized Credential object.
@@ -68,8 +69,7 @@ public class Utils {
         //            throw new FileNotFoundException("Resource not found: " + CREDENTIALS_FILE_PATH);
         //        }
 
-        //TODO MSA by Djer |POO| Tu devrais utiliser ta constante "CREDENTIALS_FILE_PATH"
-        File clientSecretsFic = new File(System.getProperty("user.home") + "\\dap\\credentials.json");
+        File clientSecretsFic = new File(CREDENTIALS_FILE_PATH);
         Reader read = new InputStreamReader(new FileInputStream(clientSecretsFic), Charset.forName("UTF-8"));
 
         GoogleClientSecrets clientSecrets = GoogleClientSecrets.load(JSON_FACTORY, read);
