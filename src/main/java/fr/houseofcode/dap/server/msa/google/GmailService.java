@@ -19,6 +19,8 @@ import com.google.api.services.gmail.model.ListLabelsResponse;
 import com.google.api.services.gmail.model.ListMessagesResponse;
 import com.google.api.services.gmail.model.Message;
 
+import jdk.internal.org.jline.utils.Log;
+
 /**
  * Manage all Gmail data access.
  * @author adminHOC
@@ -70,6 +72,7 @@ public final class GmailService {
      * @throws GeneralSecurityException in case there's a security failure
      */
     public Integer getNbUnreadEmail(String userKey) throws IOException, GeneralSecurityException {
+    	LOG.info("Récupération du nbre d'émail pour l'utilisateur : " + userKey);
 
         String user = "me";
 
@@ -81,7 +84,7 @@ public final class GmailService {
             //TODO MSA by Djer |Audit Code| (Checkstyle) Le bloc devrait contenir au moins une instruction. Tu peux mettre une LOG de debug/info. Ou alors inverser ta condition dans le "if" et transféré le bloc "else" dans ce block
         } else {
             int number = messages.size();
-            LOG.debug("Number of unread messages : " + number);
+            LOG.info("Number of unread messages : " + number);
             //TODO MSA by Djer |POO| Evite d'avoir plusieurs return dans une méthode. Initialise une varaible au début de la méthode, valorise cette variable en fonction des règles métier puis renvoie la valeur de cette variable.
             return number;
 
@@ -100,7 +103,7 @@ public final class GmailService {
     public String getLabels(String userKey) throws IOException, GeneralSecurityException {
         Gmail service2 = getService(userKey);
         //TODO MSA by Djer |POO| Evite de mettre un espace, il vaut mieu initialiser avec "vide" (sans espaces). Ici ton premier label aura un espace en plus au début
-        String result = " ";
+        String result = "";
         String user = "me";
 
         ListLabelsResponse labelsResponse = service2.users().labels().list(user).execute();
@@ -111,7 +114,7 @@ public final class GmailService {
         } else {
 
             for (Label label : labels) {
-                result = result + " " + label.getName() + "\n";
+                result = result + "" + label.getName() + "\n";
 
             }
         }

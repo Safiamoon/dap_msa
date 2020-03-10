@@ -31,6 +31,7 @@ import com.google.api.client.http.javanet.NetHttpTransport;
 @Controller
 //TODO MSA by Djer |Audit Code| (Checkstyle) Commentaire JavaDoc manquant
 public class GoogleAccount {
+	private static final Logger LOG = LogManager.getLogger();
     //TODO MSA by Djer |Audit Code| (Checkstyle) Commentaire JavaDoc Manquant
     private static final int SENSIBLE_DATA_FIRST_CHAR = 0;
     //TODO MSA by Djer |Audit Code| (Checkstyle) Commentaire JavaDoc Manquant
@@ -90,7 +91,7 @@ public class GoogleAccount {
     @SuppressWarnings("PMD.AvoidDuplicateLiterals")
     private String getUserid(final HttpSession session) throws ServletException {
         //TODO MSA by Djer |Log4J| Logger en attribut et pas en variable local d'une méthode.
-        final Logger LOG = LogManager.getLogger();
+      
         String userId = null;
         if (null != session && null != session.getAttribute("userId")) {
             userId = (String) session.getAttribute("userId");
