@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import fr.houseofcode.dap.server.msa.google.GmailService;
-import jdk.internal.org.jline.utils.Log;
 
 /**
  * @author msa
@@ -19,7 +18,7 @@ import jdk.internal.org.jline.utils.Log;
  */
 @RestController
 public class EmailController {
-	private static final Logger LOG = LogManager.getLogger();
+    private static final Logger LOG = LogManager.getLogger();
     @Autowired
     //TODO MSA by Djer |Audit Code| (Checkstyle) Commentaire JavaDoc manquant
     private GmailService service;
@@ -27,7 +26,16 @@ public class EmailController {
     @RequestMapping("/Email/Unread")
     //TODO MSA by Djer |Audit Code| (Checkstyle) Commentaire JavaDoc manquant
     public Integer displayNbUnreademail(@RequestParam String userKey) throws IOException, GeneralSecurityException {
-    	LOG.info("Affichage de nombre d'email pour l'utilisateur :" + userKey);
+        LOG.info("Affichage de nombre d'email pour l'utilisateur :" + userKey);
         return service.getNbUnreadEmail(userKey);
+    }
+
+    /**
+     * Define the Gmail Service
+     * @param gmailService the (mock?) service
+     */
+    public void setService(GmailService gmailService) {
+        this.service = gmailService;
+
     }
 }

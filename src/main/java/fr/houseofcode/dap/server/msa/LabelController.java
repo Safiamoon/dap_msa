@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import fr.houseofcode.dap.server.msa.google.GmailService;
+import fr.houseofcode.dap.server.msa.google.GmailServiceImpl;
 
 /**
  *
@@ -18,7 +18,7 @@ import fr.houseofcode.dap.server.msa.google.GmailService;
 public class LabelController {
     @Autowired
     //TODO MSA by Djer |Audit Code| (Checkstyle) Commentaire JavaDoc manquant
-    private GmailService service;
+    private GmailServiceImpl service;
 
     //TODO MSA by Djer |MVC| Tu aurais put ajouter cette méthode (et le MappingRequest) dans la classe "EmailController" les labels étant étroitement lié aux emails. De plus ils paratagent le même début d'URL.
     @RequestMapping("/Email/Label")
