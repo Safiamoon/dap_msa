@@ -39,12 +39,6 @@ public final class GmailServiceImpl implements GmailService {
     /** The default JsonFactory. */
     static final JsonFactory JSON_FACTORY = JacksonFactory.getDefaultInstance();
 
-    //TODO MSA by Djer |Design Patern| Ce constructeur était privé lorsque l'on gérait le "Singleton" nous-même, ca n'est plus utile (Spring fait lui même un Singleton). Tu peux supprimer ce constructeur, celui par defaut généré par Java fonctionenra bien ici.
-    /** The default constructor. Private because is a singleton. */
-    private GmailServiceImpl() {
-
-    }
-
     /**
      * Allow the secured access to Gmail.
      * @return an instance GmailService with secured transport
