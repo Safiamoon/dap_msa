@@ -24,7 +24,7 @@ import com.google.api.services.gmail.model.Message;
  * @author adminHOC
  */
 @Service
-public final class GmailServiceImpl implements GmailService {
+public class GmailServiceImpl implements GmailService {
 
     //TODO MSA by Djer |Audit Code| (Checkstyle) Commentaire JavaDoc manquant
     private static final Logger LOG = LogManager.getLogger();
