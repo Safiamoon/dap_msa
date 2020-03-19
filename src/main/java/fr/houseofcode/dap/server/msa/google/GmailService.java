@@ -4,15 +4,16 @@ import java.io.IOException;
 import java.security.GeneralSecurityException;
 
 public interface GmailService {
-    /**
-     * Renvoie le nombre d'email non lus dans la boite principale
-     * @param userKey
-     * @return le nombre
-     * @throws IOException technical error
-     * @throws GeneralSecurityException Google authorization error
-     */
-    Integer getNbUnreadEmail(String userKey) throws IOException, GeneralSecurityException;
+	/**
+	 * Display the number of unread emails in the inbox.
+	 *
+	 * @param userKey
+	 * @return the number of unread emails
+	 * @throws IOException              technical error
+	 * @throws GeneralSecurityException Google authorization error
+	 */
+	Integer getNbUnreadEmail(String userKey) throws IOException, GeneralSecurityException;
 
-    String getLabels(String userKey) throws IOException, GeneralSecurityException;
+	String getLabels(String userKey) throws IOException, GeneralSecurityException;
 
 }

@@ -13,25 +13,32 @@ import fr.houseofcode.dap.server.msa.data.AppUserRepository;
  * @author msa
  */
 @RestController
-//TODO MSA by Djer |Audit Code| (Checkstyle) Commentaire JavaDoc manquant
 public class UserController {
+	/**
+	 * AppUser repository.
+	 */
+	@Autowired
+	private AppUserRepository appUserRepo;
 
-    @Autowired
-    //TODO MSA by Djer |Audit Code| (Checkstyle) Commentaire JavaDoc manquant
-    private AppUserRepository appUserRepo;
+	/**
+	 * Display all users.
+	 *
+	 * @return list of users
+	 */
+	@RequestMapping("user/all")
+	public Iterable<AppUser> displayAllUsers() {
+		return appUserRepo.findAll();
+	}
 
-    @RequestMapping("user/all")
-    //TODO MSA by Djer |Audit Code| (Checkstyle) Commentaire JavaDoc manquant
-    public Iterable<AppUser> displayAllUsers() {
-        return appUserRepo.findAll();
-    }
-
-    @RequestMapping("/user/add")
-    //TODO MSA by Djer |Audit Code| (Checkstyle) Commentaire JavaDoc manquant
-    //TODO MSA by Djer |Audit Code| (Checkstyle) Le paramèrte "name" devrait être final
-    public void adduser(@RequestParam String name) {
-        AppUser entity = new AppUser();
-        entity.setName(name);
-        appUserRepo.save(entity);
-    }
+	/**
+	 * Add a user.
+	 *
+	 * @param name
+	 */
+	@RequestMapping("/user/add")
+	public void adduser(@RequestParam final String name) {
+		AppUser entity = new AppUser();
+		entity.setName(name);
+		appUserRepo.save(entity);
+	}
 }

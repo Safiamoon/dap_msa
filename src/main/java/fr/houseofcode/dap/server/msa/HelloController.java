@@ -8,12 +8,19 @@ import org.springframework.web.bind.annotation.RestController;
  * @author msa
  */
 @RestController
-//TODO MSA by Djer |Audit Code| (Checkstyle) Commentaire JavaDoc manquant
+/**
+ * 
+ * @author Safia
+ *
+ */
 public class HelloController {
 
-    @RequestMapping("/")
-    //TODO MSA by Djer |Audit Code| (Checkstyle) Commentaire JavaDoc manquant
-    public String index() {
-        return "Welcome to Spring Boot !";
-    }
+	/**
+	 * 
+	 * @return welcoming message
+	 */
+	@RequestMapping("/")
+	public String index() {
+		return "Welcome to Spring Boot !";
+	}
 }
