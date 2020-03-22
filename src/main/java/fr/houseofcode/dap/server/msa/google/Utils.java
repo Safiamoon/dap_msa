@@ -2,10 +2,11 @@ package fr.houseofcode.dap.server.msa.google;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.Reader;
-import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -33,17 +34,20 @@ public class Utils {
 	/**
 	 * Tokens directory path
 	 */
-	private static final String TOKENS_DIRECTORY_PATH = "C:\\Users\\msell\\dap\\tokens";
+	private static final String TOKENS_DIRECTORY_PATH = System.getProperty("user.home") + "\\dap\\tokens"
+			+ File.separator;
 
 	/**
 	 * Global instance of the scopes required by this quickstart. If modifying these
 	 * scopes, delete your previously saved tokens/ folder.
 	 */
 	private static final List<String> SCOPES = new ArrayList<String>();
+
 	/**
 	 * Credentials file path.
 	 */
-	private static final String CREDENTIALS_FILE_PATH = "C:\\Users\\msell\\dap\\credentials.json";
+	private static final String CREDENTIALS_FILE_PATH = System.getProperty("user.home") + "\\dap\\credentials.json"
+			+ File.separator;
 
 	/**
 	 * Creates an authorized Credential object.
@@ -76,14 +80,17 @@ public class Utils {
 		SCOPES.add(CalendarScopes.CALENDAR_READONLY);
 		SCOPES.add(GmailScopes.GMAIL_READONLY);
 		File clientSecretsFic = new File(CREDENTIALS_FILE_PATH);
-		Reader read = new InputStreamReader(new FileInputStream(clientSecretsFic), Charset.forName("UTF-8"));
+		if (!clientSecretsFic.exists()) {
+			throw new FileNotFoundException();
+		}
+		FileInputStream in = new FileInputStream(clientSecretsFic);
+		Reader read = new InputStreamReader(in, StandardCharsets.UTF_8);
+		GoogleClientSecrets clSecrets = GoogleClientSecrets.load(JSON_FACTORY, read);
 
-		GoogleClientSecrets clientSecrets = GoogleClientSecrets.load(JSON_FACTORY, read);
-		GoogleAuthorizationCodeFlow flow = new GoogleAuthorizationCodeFlow.Builder(httpTransport, JSON_FACTORY,
-				clientSecrets, SCOPES)
-						.setDataStoreFactory(new FileDataStoreFactory(new java.io.File(TOKENS_DIRECTORY_PATH)))
-						.setAccessType("offline").build();
-		return flow;
+		java.io.File dataDirectory = new java.io.File(TOKENS_DIRECTORY_PATH);
+		FileDataStoreFactory dataStore = new FileDataStoreFactory(dataDirectory);
+		return new GoogleAuthorizationCodeFlow.Builder(httpTransport, JSON_FACTORY, clSecrets, SCOPES)
+				.setDataStoreFactory(dataStore).setAccessType("online").build();
 
 	}
 }

@@ -23,7 +23,7 @@ public class EventController {
 	private CalendarService service;
 
 	/**
-	 * 
+	 *
 	 * display next event.
 	 *
 	 * @param userKey

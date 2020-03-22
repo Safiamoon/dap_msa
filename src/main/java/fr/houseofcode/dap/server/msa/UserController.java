@@ -14,6 +14,7 @@ import fr.houseofcode.dap.server.msa.data.AppUserRepository;
  */
 @RestController
 public class UserController {
+
 	/**
 	 * AppUser repository.
 	 */
@@ -36,9 +37,10 @@ public class UserController {
 	 * @param name
 	 */
 	@RequestMapping("/user/add")
-	public void adduser(@RequestParam final String name) {
+	public void addUser(@RequestParam final String name) {
 		AppUser entity = new AppUser();
 		entity.setName(name);
 		appUserRepo.save(entity);
 	}
+
 }

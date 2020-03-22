@@ -43,12 +43,10 @@ public class GmailServiceImpl implements GmailService {
 
 	/**
 	 * Allow the secured access to Gmail.
-	 * 
+	 *
 	 * @param userKey
 	 * @return an instance GmailService with secured transport
-	 * @throws GeneralSecurityException in case there's a security failure //TODO
-	 *                                  MSA by Djer |Audit Code| (Checkstyle) Evite
-	 *                                  les espaces vides en fin de ligne
+	 * @throws GeneralSecurityException in case there's a security failure
 	 * @throws IOException              if the sent or received message's broken
 	 */
 	private Gmail getService(final String userKey) throws GeneralSecurityException, IOException {
@@ -105,10 +103,6 @@ public class GmailServiceImpl implements GmailService {
 		ListLabelsResponse labelsResponse = service2.users().labels().list(user).execute();
 		List<Label> labels = labelsResponse.getLabels();
 		if (labels.isEmpty()) {
-			// TODO MSA by Djer |POO| Evite d'avoir plusieurs return dans une méthode.
-			// Initialise une varaible au début de la méthode, valorise cette variable en
-			// fonction des règles métier puis renvoie la valeur de cette variable. En plus
-			// ici tu as déja "result" qui est prete pour cela.
 			return "No labels found.";
 		} else {
 
@@ -117,8 +111,6 @@ public class GmailServiceImpl implements GmailService {
 
 			}
 		}
-		// TODO MSA by Djer |Log4J| Contextualise tes messages de log (ajoute "for
-		// userKey : " + userKey)
 		LOG.debug("Labels of Gmail for the user " + userKey + ":" + result);
 
 		return result;
