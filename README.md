@@ -19,7 +19,7 @@
 - To ad a new user : http://localhost/user/add?name=suzy
 - To see the list of the users that you added go to : http://localhost/user/all
 - To add an affiliate account to a user go to : http://localhost/account/add/{userId} = http://localhost :8080/account/add/1. You should have a Google page asking you to enter your Google credentials.
-- Now once you are connected to a google account, you can see the number of unread emails and next event for example with the follwing url :
+- Now once you are connected to a google account, you can see the number of unread emails and next event for example with the following URIS :
 http://localhost:8080/Email/Unread?userKey=suzy
 http://localhost:8081/event/next?userKey=suzy
 
