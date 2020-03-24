@@ -34,7 +34,7 @@ public class Utils {
 	/**
 	 * Tokens directory path
 	 */
-	private static final String TOKENS_DIRECTORY_PATH = System.getProperty("user.home") + "\\dap\\tokens"
+	private static final String TOKENS_DIRECTORY_PATH = System.getProperty("user.home") + "\\Dap\\tokens"
 			+ File.separator;
 
 	/**
@@ -46,7 +46,7 @@ public class Utils {
 	/**
 	 * Credentials file path.
 	 */
-	private static final String CREDENTIALS_FILE_PATH = System.getProperty("user.home") + "\\dap\\credentials.json"
+	private static final String CREDENTIALS_FILE_PATH = System.getProperty("user.home") + "\\Dap\\credentials.json"
 			+ File.separator;
 
 	/**
