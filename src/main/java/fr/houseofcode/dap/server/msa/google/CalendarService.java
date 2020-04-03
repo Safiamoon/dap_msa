@@ -24,68 +24,74 @@ import com.google.api.services.calendar.model.Events;
  */
 @Service
 public final class CalendarService {
-	/**
-	 * Display log.
-	 */
-	private static final Logger LOG = LogManager.getLogger();
+    /**
+     * Display log.
+     */
+    private static final Logger LOG = LogManager.getLogger();
 
-	/**
-	 * Log message.
-	 *
-	 * @param args
-	 * @throws IOException
-	 * @throws GeneralSecurityException
-	 */
-	public static void main(final String[] args) throws IOException, GeneralSecurityException {
-		LOG.debug("DÃ©but du main avec comme arguments : " + args);
+    /**
+     * Log message.
+     *
+     * @param args
+     * @throws IOException
+     * @throws GeneralSecurityException
+     */
+    //TODO MSA by Djer |POO| Cette méthode n'est plus utiles.
+    public static void main(final String[] args) throws IOException, GeneralSecurityException {
+        //TODO MSA by Djer |IDE| Ce fichier a étté créé par "admin HOC" et tu ne l'as pas modifié, il est donc en UTF-8 (ce qui est valides) mais d'autres fichiers sources sont en "ISO-8859-1" ....
+        LOG.debug("DÃ©but du main avec comme arguments : " + args);
 
-	}
+    }
 
-	/** * The internal application name. */
-	private static final String APPLICATION_NAME = "Google Calendar API Java Quickstart";
-	/** * The default JsonFactory. */
-	private static final JsonFactory JSON_FACTORY = JacksonFactory.getDefaultInstance();
+    /** * The internal application name. */
+    private static final String APPLICATION_NAME = "Google Calendar API Java Quickstart";
+    /** * The default JsonFactory. */
+    private static final JsonFactory JSON_FACTORY = JacksonFactory.getDefaultInstance();
 
-	/**
-	 * Get the next event.
-	 *
-	 * @param userKey
-	 * @throws IOException              if the sent or received message's broken
-	 * @throws GeneralSecurityException in case there's a security failure
-	 * @return Textual representation of the next Event
-	 */
-	public String nextEvent(final String userKey) throws IOException, GeneralSecurityException {
-		// Build a new authorized API client service.
-		final NetHttpTransport httpTransport = GoogleNetHttpTransport.newTrustedTransport();
-		Calendar service = new Calendar.Builder(httpTransport, JSON_FACTORY,
-				Utils.getCredentials(httpTransport, userKey)).setApplicationName(APPLICATION_NAME).build();
+    //TODO MSA by Djer |JavaDoc| Commentaires Javadoc manquants (paramètre)
+    /**
+     * Get the next event.
+     *
+     * @param userKey
+     * @throws IOException              if the sent or received message's broken
+     * @throws GeneralSecurityException in case there's a security failure
+     * @return Textual representation of the next Event
+     */
+    public String nextEvent(final String userKey) throws IOException, GeneralSecurityException {
+        // Build a new authorized API client service.
+        final NetHttpTransport httpTransport = GoogleNetHttpTransport.newTrustedTransport();
+        Calendar service = new Calendar.Builder(httpTransport, JSON_FACTORY,
+                Utils.getCredentials(httpTransport, userKey)).setApplicationName(APPLICATION_NAME).build();
 
-		String result = "";
-		// List the next 10 events from the primary calendar.
-		DateTime now = new DateTime(System.currentTimeMillis());
-		Events events = service.events().list("primary").setMaxResults(1).setTimeMin(now).setOrderBy("startTime")
-				.setSingleEvents(true).execute();
-		List<Event> items = events.getItems();
-		// return items
-		if (items.isEmpty()) {
-			return "No upcoming events found.";
-		} else {
+        String result = "";
+        //TODO MSA by Djer |POO| Commentaires faux, ne récupère que **1** évènnement.
+        // List the next 10 events from the primary calendar.
+        DateTime now = new DateTime(System.currentTimeMillis());
+        Events events = service.events().list("primary").setMaxResults(1).setTimeMin(now).setOrderBy("startTime")
+                .setSingleEvents(true).execute();
+        List<Event> items = events.getItems();
+        // return items
+        if (items.isEmpty()) {
+            //TODO MSA by Djer |POO| Evite les multiples return dans une même méthodes. affecte la variable "result", tes if/eles existant évitent déja d'éxécuter du code inutile.
+            return "No upcoming events found.";
+        } else {
 
-			for (Event event : items) {
-				DateTime start = event.getStart().getDateTime();
-				if (start == null) {
-					start = event.getStart().getDate();
-				}
-				DateTime end = event.getEnd().getDateTime();
-				if (end == null) {
-					end = event.getEnd().getDate();
-				}
+            for (Event event : items) {
+                DateTime start = event.getStart().getDateTime();
+                if (start == null) {
+                    start = event.getStart().getDate();
+                }
+                DateTime end = event.getEnd().getDateTime();
+                if (end == null) {
+                    end = event.getEnd().getDate();
+                }
 
-				result = result + " " + event.getSummary() + "(" + "the start of the event is: " + start
-						+ "the end of the event " + end + ")\n";
-			}
-		}
-		LOG.debug("The next event for " + userKey + "is : " + result);
-		return result;
-	}
+                //TODO MSA by Djer |Rest API| Un service d'une API ne devrait pas s'occuper de l'affichage, c'est au client (ou la partie présentation (thymeleaf) de le faire).
+                result = result + " " + event.getSummary() + "(" + "the start of the event is: " + start
+                        + "the end of the event " + end + ")\n";
+            }
+        }
+        LOG.debug("The next event for " + userKey + "is : " + result);
+        return result;
+    }
 }
