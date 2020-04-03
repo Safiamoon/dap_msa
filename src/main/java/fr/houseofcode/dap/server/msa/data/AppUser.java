@@ -9,45 +9,47 @@ import javax.persistence.Id;
  * @author msa
  */
 @Entity
-//TODO MSA by Djer |Audit Code| (Checkstyle) Commentaire JavaDoc manquant
 public class AppUser {
-    @Id
-    @GeneratedValue
-    //TODO MSA by Djer |Audit Code| (Checkstyle) Commentaire JavaDoc manquant
-    private Integer id;
+	/**
+	 * Id.
+	 */
+	@Id
+	@GeneratedValue
+	private Integer id;
 
-    /**
-     * @return the id
-     */
-    public Integer getId() {
-        return id;
-    }
+	/**
+	 * Name.
+	 */
+	private String name;
 
-    /**
-     * @param id the id to set
-     */
-    //TODO MSA by Djer |Audit Code| (Checkstyle) LE paramètre devrait être final
-    public void setId(Integer id) {
-        this.id = id;
-    }
+	/**
+	 * Get the Id.
+	 *
+	 * @return the id
+	 */
+	public Integer getId() {
+		return id;
+	}
 
-    /**
-     * @return the name
-     */
-    public String getName() {
-        return name;
-    }
+	/**
+	 * @param identifiant the id to set
+	 */
+	public void setId(final Integer identifiant) {
+		this.id = identifiant;
+	}
 
-    /**
-     * @param name the name to set
-     */
-    //TODO MSA by Djer |Audit Code| (Checkstyle) LE paramètre devrait être final
-    public void setName(String name) {
-        this.name = name;
-    }
+	/**
+	 * @return the name
+	 */
+	public String getName() {
+		return name;
+	}
 
-    //TODO MSA by Djer |Audit Code| (Checkstyle) Commentaire JavaDoc manquant
-    //TODO MSA by Djer |POO| Place les attributs vers le début de la classe. Ordre attendu : Constantes, attributs, intialisateurs statiques, constructeurs, méthodes métier, méthodes utilitaires (toString, Equals,...), getter/setters
-    private String name;
+	/**
+	 * @param nom the name to set
+	 */
+	public void setName(final String nom) {
+		this.name = nom;
+	}
 
 }

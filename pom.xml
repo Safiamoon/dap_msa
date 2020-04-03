@@ -15,6 +15,8 @@
 
 	<properties>
 		<java.version>1.8</java.version>
+		<pmdVersion>6.5.0</pmdVersion>
+		<checkstyleVersion>6.18</checkstyleVersion>
 	</properties>
 
 	<dependencies>
@@ -22,6 +24,20 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter</artifactId>
+			<exclusions>
+				<exclusion>
+					<groupId>org.springframework.boot</groupId>
+					<artifactId>spring-boot-starter-logging</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-log4j2</artifactId>
 		</dependency>
 
 		<dependency>
@@ -32,6 +48,22 @@
 			<groupId>com.h2database</groupId>
 			<artifactId>h2</artifactId>
 		</dependency>
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+			<exclusions>
+				<exclusion>
+					<groupId>org.junit.vintage</groupId>
+					<artifactId>junit-vintage-engine</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
 
 
 		<dependency>
@@ -40,7 +72,7 @@
 			<version>1.23.0</version>
 		</dependency>
 
-<!-- TODO MSA by Djer |API Google| nous n'avons plus besoi nde cette dépendance depuis que nous sommes en mode "Web" -->
+
 		<dependency>
 			<groupId>com.google.oauth-client</groupId>
 			<artifactId>google-oauth-client-jetty</artifactId>
@@ -58,20 +90,61 @@
 			<artifactId>google-api-services-calendar</artifactId>
 			<version>v3-rev305-1.23.0</version>
 		</dependency>
-		<dependency>
-			<groupId>org.apache.logging.log4j</groupId>
-			<artifactId>log4j-api</artifactId>
-			<version>2.9.1</version><!--$NO-MVN-MAN-VER$ -->
-		</dependency>
-		<dependency>
-			<groupId>org.apache.logging.log4j</groupId>
-			<artifactId>log4j-core</artifactId>
-			<version>2.9.1</version><!--$NO-MVN-MAN-VER$ -->
-		</dependency>
 
 	</dependencies>
 
+
+
+
 	<build>
+
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-checkstyle-plugin</artifactId>
+					<version>3.0.0</version>
+					<dependencies>
+						<dependency>
+							<groupId>com.puppycrawl.tools</groupId>
+							<artifactId>checkstyle</artifactId>
+							<version>${checkstyleVersion}</version>
+						</dependency>
+					</dependencies>
+				</plugin>
+
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-pmd-plugin</artifactId>
+					<version>3.10.0</version>
+					<dependencies>
+						<dependency>
+							<groupId>net.sourceforge.pmd</groupId>
+							<artifactId>pmd-core</artifactId>
+							<version>${pmdVersion}</version>
+						</dependency>
+						<dependency>
+							<groupId>net.sourceforge.pmd</groupId>
+							<artifactId>pmd-java</artifactId>
+							<version>${pmdVersion}</version>
+						</dependency>
+						<dependency>
+							<groupId>net.sourceforge.pmd</groupId>
+							<artifactId>pmd-javascript</artifactId>
+							<version>${pmdVersion}</version>
+						</dependency>
+						<dependency>
+							<groupId>net.sourceforge.pmd</groupId>
+							<artifactId>pmd-jsp</artifactId>
+							<version>${pmdVersion}</version>
+						</dependency>
+					</dependencies>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+
+
+
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
@@ -79,5 +152,45 @@
 			</plugin>
 		</plugins>
 	</build>
+
+
+	<reporting>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-checkstyle-plugin</artifactId>
+				<version>3.0.0</version>
+				<configuration>
+					<configLocation>checkstyle/dap_checkstyle_checks.xml</configLocation>
+				</configuration>
+				<reportSets>
+					<reportSet>
+						<reports>
+							<report>checkstyle</report>
+						</reports>
+					</reportSet>
+				</reportSets>
+			</plugin>
+			<plugin>
+				<artifactId>maven-pmd-plugin</artifactId>
+				<version>3.10.0</version>
+				<configuration>
+					<linkXref>true</linkXref>
+					<targetJdk>1.8</targetJdk>
+					<skipEmptyReport>false</skipEmptyReport>
+					<minimumTokens>75</minimumTokens>
+					<rulesets>
+						<ruleset>/pmd/dap_pmd.xml</ruleset>
+					</rulesets>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-project-info-reports-plugin</artifactId>
+				<version>2.9</version>
+			</plugin>
+		</plugins>
+	</reporting>
+
 
 </project> 
