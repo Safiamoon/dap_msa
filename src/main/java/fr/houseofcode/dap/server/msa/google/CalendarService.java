@@ -24,11 +24,13 @@ import com.google.api.services.calendar.model.Events;
  */
 @Service
 public final class CalendarService {
+    //TODO MSA by Djer |JavaDoc| Description pas très justre. "Give acces to logs" serait plus juste. La "log" est **très** classique en Java simplement "Logger" est acceptable comme JavaDoc.
     /**
      * Display log.
      */
     private static final Logger LOG = LogManager.getLogger();
 
+    //TODO MSA by Djer |JavaDoc| La description (de la méthode) ne semble pas bon.
     /**
      * Log message.
      *
@@ -64,7 +66,7 @@ public final class CalendarService {
                 Utils.getCredentials(httpTransport, userKey)).setApplicationName(APPLICATION_NAME).build();
 
         String result = "";
-        //TODO MSA by Djer |POO| Commentaires faux, ne récupère que **1** évènnement.
+        //TODO MSA by Djer |POO| Commentaires devenu faux, ne récupère que **1** évènnement.
         // List the next 10 events from the primary calendar.
         DateTime now = new DateTime(System.currentTimeMillis());
         Events events = service.events().list("primary").setMaxResults(1).setTimeMin(now).setOrderBy("startTime")

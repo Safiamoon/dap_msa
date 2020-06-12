@@ -20,6 +20,7 @@ import com.google.api.client.util.store.FileDataStoreFactory;
 import com.google.api.services.calendar.CalendarScopes;
 import com.google.api.services.gmail.GmailScopes;
 
+//TODO MSA by Djer |Audit Code| Prends en compte les rmarques de CheckStyle.
 /**
  * Instance of scopes for Gmail and Calendar
  * 
@@ -35,7 +36,7 @@ public class Utils {
      * Tokens directory path
      */
     //TODO MSA by Djer |POO| Avant "Dap" et avant "tokens", tu devrais aussi utiliser "File.separator"
-    //TODO MSA by Djer |POO| Evite de mettre un "line separator" à la fin des dossiers, i klest ne général plus simple d'ajouter se séparateur si on a besoin d'ajouter un sous-dossier ou un fichier par la suite.
+    //TODO MSA by Djer |POO| Evite de mettre un "line separator" à la fin des dossiers, il est en général plus simple d'ajouter se séparateur si on a besoin d'ajouter un sous-dossier ou un fichier par la suite.
     private static final String TOKENS_DIRECTORY_PATH = System.getProperty("user.home") + "\\Dap\\tokens"
             + File.separator;
 
@@ -45,6 +46,7 @@ public class Utils {
      */
     private static final List<String> SCOPES = new ArrayList<String>();
 
+    //TODO MSA by Djer |POO| Avant "Dap" et avant "tokens", tu devrais aussi utiliser "File.separator"
     /**
      * Credentials file path.
      */

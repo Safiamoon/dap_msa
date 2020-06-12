@@ -71,6 +71,7 @@ public class GmailServiceImpl implements GmailService {
      */
     @Override
     public Integer getNbUnreadEmail(final String userKey) throws IOException, GeneralSecurityException {
+        //TODO MSA by Djer |IDE| (encodage) ton IDE n'était pas configuré en UTF-8 lorsque tu as rédigé ce message
         LOG.info("RÃ©cupÃ©ration du nbre d'Ã©mail pour l'utilisateur : " + userKey);
 
         String user = "me";
@@ -85,7 +86,7 @@ public class GmailServiceImpl implements GmailService {
         } else {
             int number = messages.size();
             LOG.info("Number of unread messages : " + number);
-            //TODO MSA by Djer |POO| Evite les multipels returns dans une même méthode. Créer uen variable de "retour" au début, puis affecte luis la bonne valeur au fir et à mesure du déroulement de ton algo.
+            //TODO MSA by Djer |POO| Evite les multiples returns dans une même méthode. Créer uen variable de "retour" au début, puis affecte lui la bonne valeur au fur et à mesure du déroulement de ton algo.
             return number;
 
         }
@@ -115,7 +116,7 @@ public class GmailServiceImpl implements GmailService {
         } else {
 
             for (Label label : labels) {
-                //TODO MSA by Djer |Rest API| Un service d'une API ne devrait pas s'occuper de l'affichage, c'est au client (ou la partie présentation (thymeleaf) de le faire). Icic renvoyer une "List<String>" serait plus approrié.
+                //TODO MSA by Djer |Rest API| Un service d'une API ne devrait pas s'occuper de l'affichage, c'est au client (ou la partie présentation (thymeleaf) de le faire). Ici renvoyer une "List<String>" serait plus approrié.
                 result = result + "" + label.getName() + "\n";
 
             }

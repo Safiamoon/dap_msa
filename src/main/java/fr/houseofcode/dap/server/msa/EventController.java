@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import fr.houseofcode.dap.server.msa.google.CalendarService;
 
+//TODO MSA by Djer |Audit Code| Prends en compte les rmarques de CheckStyle.
+//TODO MSA by Djer |JavaDoc| Description de la classe manquante.
 /**
  *
  * @author msa

@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import fr.houseofcode.dap.server.msa.google.GmailService;
 
-//TODO MSA by Djer |Audit Code| Description de la classe manquante.
+//TODO MSA by Djer |JavaDoc| Description de la classe manquante.
 /**
  * @author msa
  *

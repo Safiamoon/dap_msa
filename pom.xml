@@ -72,7 +72,7 @@
 			<version>1.23.0</version>
 		</dependency>
 
-
+		<!-- TODO MSA by Djer |API Google| Cette dépendance n'est plus utiles depuis qu'on est passé en mode "serveur". -->
 		<dependency>
 			<groupId>com.google.oauth-client</groupId>
 			<artifactId>google-oauth-client-jetty</artifactId>
@@ -92,9 +92,6 @@
 		</dependency>
 
 	</dependencies>
-
-
-
 
 	<build>
 
@@ -143,8 +140,6 @@
 			</plugins>
 		</pluginManagement>
 
-
-
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
@@ -189,6 +184,7 @@
 				<artifactId>maven-project-info-reports-plugin</artifactId>
 				<version>2.9</version>
 			</plugin>
+			<!-- TODO MSA by Djer |Maven| Il manque le plugin "JavaDoc" qui génère une documentation technique à partir de ta JavaDoc dans le code -->
 		</plugins>
 	</reporting>
 

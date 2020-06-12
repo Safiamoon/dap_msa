@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import fr.houseofcode.dap.server.msa.google.GmailServiceImpl;
 
+//TODO MSA by Djer |Audit Code| Prends en compte les rmarques de CheckStyle.
 //TODO MSA by Djer |JavaDoc| Description de la classe  manquants.
 /**
  *

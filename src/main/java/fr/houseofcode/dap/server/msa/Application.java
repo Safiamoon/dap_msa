@@ -3,7 +3,7 @@ package fr.houseofcode.dap.server.msa;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-//TODO MSA by Djer |Audit Code| Description de la classe manquante.
+//TODO MSA by Djer |JavaDoc| Description de la classe manquante.
 /**
  *
  * @author Safia
