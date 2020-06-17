@@ -11,6 +11,8 @@ import org.junit.Test;
 
 import fr.houseofcode.dap.server.msa.EmailController;
 
+//TODO MSA by Djer |Audit Code| Prend en compte les remarques de CheckStyle
+//TODO MSA by Djer |JavaDoc| Commentaire JavaDoc manquant.
 /**
  * @author sms
  *

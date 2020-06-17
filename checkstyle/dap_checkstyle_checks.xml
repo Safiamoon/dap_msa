@@ -51,12 +51,6 @@
 		<property name="message" value="Line has trailing spaces." />
 	</module>
 
-	<!-- Checks for Size Violations. -->
-	<!-- See http://checkstyle.sf.net/config_sizes.html -->
-	<module name="LineLength">
-		<property name="max" value="120" />
-	</module>
-
 	<!-- Checks for Headers -->
 	<!-- See http://checkstyle.sf.net/config_header.html -->
 	<!-- <module name="Header"> -->
@@ -65,6 +59,13 @@
 	<!-- </module> -->
 
 	<module name="TreeWalker">
+	
+	<!-- TODO MSA by Djer |Audit Code| (config) se bloc était mal placé (je te l'ai déplacé), du coups ton CheckStyle ne fonctionnait pas (84 problèmes).-->
+	<!-- Checks for Size Violations. -->
+	<!-- See http://checkstyle.sf.net/config_sizes.html -->
+	<module name="LineLength">
+		<property name="max" value="120" />
+	</module>
 
 		<property name="tabWidth" value="4" />
 

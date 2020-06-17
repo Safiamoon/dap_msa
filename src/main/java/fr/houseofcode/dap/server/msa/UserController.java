@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.RestController;
 import fr.houseofcode.dap.server.msa.data.AppUser;
 import fr.houseofcode.dap.server.msa.data.AppUserRepository;
 
+//TODO MSA by Djer |Audit Code| Prends en compte les rmarques de CheckStyle.
+//TODO MSA by Djer |JavaDoc| Description de la classe  manquants.
 /**
  *
  * @author msa
@@ -15,32 +17,34 @@ import fr.houseofcode.dap.server.msa.data.AppUserRepository;
 @RestController
 public class UserController {
 
-	/**
-	 * AppUser repository.
-	 */
-	@Autowired
-	private AppUserRepository appUserRepo;
+    //TODO MSA by Djer |IDE| Configure ton IDE pour que les indentations soient des espaces.
+    /**
+     * AppUser repository.
+     */
+    @Autowired
+    private AppUserRepository appUserRepo;
 
-	/**
-	 * Display all users.
-	 *
-	 * @return list of users
-	 */
-	@RequestMapping("user/all")
-	public Iterable<AppUser> displayAllUsers() {
-		return appUserRepo.findAll();
-	}
+    /**
+     * Display all users.
+     *
+     * @return list of users
+     */
+    @RequestMapping("user/all")
+    public Iterable<AppUser> displayAllUsers() {
+        return appUserRepo.findAll();
+    }
 
-	/**
-	 * Add a user.
-	 *
-	 * @param name
-	 */
-	@RequestMapping("/user/add")
-	public void addUser(@RequestParam final String name) {
-		AppUser entity = new AppUser();
-		entity.setName(name);
-		appUserRepo.save(entity);
-	}
+    //TODO MSA by Djer |JavaDoc| Commentaires Javadoc manquants (paramètre et valeur de retour)
+    /**
+     * Add a user.
+     *
+     * @param name
+     */
+    @RequestMapping("/user/add")
+    public void addUser(@RequestParam final String name) {
+        AppUser entity = new AppUser();
+        entity.setName(name);
+        appUserRepo.save(entity);
+    }
 
 }

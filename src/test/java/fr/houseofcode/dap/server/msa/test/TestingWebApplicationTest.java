@@ -21,6 +21,8 @@ import org.springframework.test.context.junit4.SpringRunner;
 import fr.houseofcode.dap.server.msa.EmailController;
 import fr.houseofcode.dap.server.msa.google.GmailServiceImpl;
 
+//TODO MSA by Djer |Audit Code| Prend en compte les remarques de CheckStyle
+//TODO MSA by Djer |JavaDoc| Commentaire JavaDoc manquant.
 /**
  * @author sms
  *
